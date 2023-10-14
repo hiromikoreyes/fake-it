@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
+import { startVoiceCollection, endVoiceCollection } from '../scripts/voicetext';
+
+let score = 0;
 
 export default function Webcam(){
 
+    
     const [count, setCount] = useState(0)
     const videoRef = useRef()
     const canvasRef = useRef()
@@ -47,29 +51,16 @@ export default function Webcam(){
         const detections = await faceapi.detectAllFaces(videoRef.current,
         new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
 
-        // DRAW YOU FACE IN WEBCAM
-        // videoRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
-        // faceapi.matchDimensions(canvasRef.current,{
-        // width:940,
-        // height:650
-        // })
-
-        // const resized = faceapi.resizeResults(detections,{
-        //     width:940,
-        //     height:650
-        // })
-        // Draws the lines cuh
-        // faceapi.draw.drawDetections(canvasRef.current,resized)
-        // faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
-        // faceapi.draw.drawFaceExpressions(canvasRef.current,resized)
         
 
         try{
             curr_score = curr_score + scoreEvaluation(detections["0"]["expressions"].happy, detections["0"]["expressions"].surprised,detections["0"]["expressions"].neutral);
             num_eval += 1;
 
+
             if(num_eval % 30 == 0){
-                const score = curr_score / num_eval;
+                score = curr_score / num_eval;
+                document.getElementById("number").textContent=score
                 total_num_eval += num_eval
                 console.log({"score": score, "evals": total_num_eval})
                 num_eval = 0
@@ -86,12 +77,15 @@ export default function Webcam(){
         <>
             <h1>Face Detection</h1>
             <div className="appvide">
-            
-            <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+                <div id="number" style={{visibility: 'hidden'}}>0</div>
+                <button onClick={startVoiceCollection}>TEST BUTTON</button>
+                <button onClick={endVoiceCollection}>STOP</button>
             </div>
-            <canvas ref={canvasRef} width="940" height="650"
-            className="appcanvas"/>
-
+            <video style={{width: "500px"}} crossOrigin="anonymous" ref={videoRef} autoPlay></video>
         </>
     )
+}
+
+export function getCurrentMood(){
+    return document.getElementById("number").textContent=score
 }

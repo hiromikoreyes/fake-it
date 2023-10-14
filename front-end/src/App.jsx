@@ -6,15 +6,6 @@ import Home from "./pages/home";
 
 function App() {
 
-
-  function doThis(){
-    return fetch('http://localhost:5000/test')
-      .then(response => {
-        response.json().then((res) => console.log(res));
-      });
-  }
-
-
   return (
 
     <>

@@ -6,9 +6,8 @@
   }
   
   .left-content {
-    flex: 90; /* Takes up 70% of the container's width */
     height: 250px;
-    width: 250px; /* Use percentage for width to maintain the ratio */
+    width: 70%; /* Use percentage for width to maintain the ratio */
     background-color: #ff6b6b; /* Background color for the left side */
     color: #fff; /* Text color */
     padding: 10px;

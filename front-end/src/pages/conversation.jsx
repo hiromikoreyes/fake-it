@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Webcam from '../components/webcam';
+import Webcam, { getCurrentMood } from '../components/webcam';
 import './conversation.css'
 
 function Conversation() {
@@ -14,7 +14,7 @@ function Conversation() {
         </div>
 
         <div className='Webcam'>
-          {/* <Webcam /> */}
+          <Webcam />
         </div>
         <div className='mic'>
         <h1 MIC> </h1>
@@ -30,6 +30,7 @@ function Conversation() {
           <h2 chat> </h2>
         </div>
       </div>
+      <button onClick={getCurrentMood}>test</button>
     </>
   );
 }
