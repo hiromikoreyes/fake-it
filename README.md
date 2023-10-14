@@ -1,8 +1,22 @@
-# React + Vite
+# Vite + Flask
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To setup on python:
+```
+python -m venv venv
 
-Currently, two official plugins are available:
+(windows)
+.\venv\Scripts\activate.bat
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+(linux)
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+Python requirements:
+- flask
+- flask-cors
+- openai
+- matplotlib
+
+React Modules Used:
+- idk yet
