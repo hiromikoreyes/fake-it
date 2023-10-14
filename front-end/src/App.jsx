@@ -18,13 +18,17 @@ function App() {
   return (
 
     <>
-      <BrowserRouter>
+      <div className='gradient_background'>
+        {<BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/webcam" element={<Conversation />}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/webcam" element={<Conversation />} />
         </Routes>
-      </BrowserRouter>
-    </>
+      </BrowserRouter>}
+      </div>
+      
+  </>
+
 
   )
 }

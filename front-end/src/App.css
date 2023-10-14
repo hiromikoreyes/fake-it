@@ -10,10 +10,16 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  background: linear-gradient(to right, #ff6b6b, #646cff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -40,3 +46,19 @@
 .read-the-docs {
   color: #888;
 }
+
+
+body {
+  background: linear-gradient(45deg, #ff6b6b, #646cff);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Additional CSS to ensure the gradient background covers the whole viewport */
+
+

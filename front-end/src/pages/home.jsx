@@ -13,6 +13,7 @@ function Home() {
   return (
 
     <>
+      
       <button onClick={startVoiceCollection}>TEST BUTTON</button>
       <button onClick={endVoiceCollection}>STOP</button>
       <button onClick={doThis}>generate response</button>
