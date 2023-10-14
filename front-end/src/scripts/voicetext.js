@@ -6,14 +6,17 @@ recognition.interimResults = true;
 recognition.continuous = true;
 
 
-recognition.onresult = event => {
-    result = event.results[0][0].transcript;
+recognition.onresult = (event) => {
+    const transcript = event.results[event.results.length - 1][0].transcript;
+    result = transcript;
+    // console.log(transcript);
 };
 
+
 recognition.onspeechend = () =>{
-    console.log("speech end.. " + result)
-    //wait for AI to respond before allowing person to speak again
+    console.log("SPEECH END")
 }
+
 
 recognition.onend = () => {
     const bold = "font-weight: bold";
@@ -27,6 +30,12 @@ export function startVoiceCollection(){
     console.log("recognition began")
     recognition.start()
 }
+
+
 export function endVoiceCollection(){
     recognition.stop()
+    
 }
+
+
+
