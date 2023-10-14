@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
+import { scoreEvaluation } from '../scripts/evaluate'
 
 export default function Webcam(){
 
@@ -34,34 +35,52 @@ export default function Webcam(){
     })
     }
 
+    var curr_score = 0;
+    var num_eval = 0;
+    var total_num_eval = 0
+
+
     const faceMyDetect = ()=>{
     setInterval(async()=>{
+
+        //timing func
         const detections = await faceapi.detectAllFaces(videoRef.current,
         new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
 
         // DRAW YOU FACE IN WEBCAM
-        canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
-        faceapi.matchDimensions(canvasRef.current,{
-        width:940,
-        height:650
-        })
+        // videoRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
+        // faceapi.matchDimensions(canvasRef.current,{
+        // width:940,
+        // height:650
+        // })
 
-        const resized = faceapi.resizeResults(detections,{
-        width:940,
-        height:650
-        })
-
-        faceapi.draw.drawDetections(canvasRef.current,resized)
-        faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
-        faceapi.draw.drawFaceExpressions(canvasRef.current,resized)
+        // const resized = faceapi.resizeResults(detections,{
+        //     width:940,
+        //     height:650
+        // })
+        // Draws the lines cuh
+        // faceapi.draw.drawDetections(canvasRef.current,resized)
+        // faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
+        // faceapi.draw.drawFaceExpressions(canvasRef.current,resized)
+        
 
         try{
-            console.log({"detection": detections["0"]["expressions"], "time": performance.now()})
+            curr_score = curr_score + scoreEvaluation(detections["0"]["expressions"].happy, detections["0"]["expressions"].surprised,detections["0"]["expressions"].neutral);
+            num_eval += 1;
+
+            if(num_eval % 30 == 0){
+                const score = curr_score / num_eval;
+                total_num_eval += num_eval
+                console.log({"score": score, "evals": total_num_eval})
+                num_eval = 0
+                curr_score = 0
+            }
+
         } catch(error) {
             // console.error("detection no existo" + " " + error)
         }
 
-    },100)
+    }, 60)
     }
     return(
         <>
@@ -72,6 +91,7 @@ export default function Webcam(){
             </div>
             <canvas ref={canvasRef} width="940" height="650"
             className="appcanvas"/>
+
         </>
     )
 }

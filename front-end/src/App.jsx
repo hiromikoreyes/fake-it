@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import {startVoiceCollection, endVoiceCollection} from './scripts/voicetext'
-import Webcam from './components/webcam';
-
+import Conversation from './pages/conversation';
+import Home from "./pages/home";
 
 function App() {
 
@@ -15,15 +14,16 @@ function App() {
       });
   }
 
+
   return (
 
     <>
-      <button onClick={startVoiceCollection}>TEST BUTTON</button>
-      <button onClick={endVoiceCollection}>STOP</button>
-      <button onClick={doThis}>generate response</button>
-      
-      <Webcam/>
-      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/webcam" element={<Conversation />}/>
+        </Routes>
+      </BrowserRouter>
     </>
 
   )
