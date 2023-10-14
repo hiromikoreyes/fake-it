@@ -41,7 +41,7 @@ export function endVoiceCollection(){
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: result}),
+        body: JSON.stringify({text: result}),
     })
       .then(response => {
         response.json().then((res) => {
