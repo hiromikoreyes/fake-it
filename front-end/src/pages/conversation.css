@@ -1,0 +1,50 @@
+.biggest-container {
+    display: flex;
+    margin: 0;
+    width: 400% ;
+    height: 600%;
+  }
+  
+  .left-content {
+    flex: 90; /* Takes up 70% of the container's width */
+    height: 250px;
+    width: 250px; /* Use percentage for width to maintain the ratio */
+    background-color: #ff6b6b; /* Background color for the left side */
+    color: #fff; /* Text color */
+    padding: 10px;
+    align-items: stretch;
+  }
+  
+  .right-content {
+    display: flex;
+    flex: 30; /* Takes up 30% of the container's width */
+    padding: 10px;
+  }
+  
+  .logo {
+    display: flex;
+    color: black;
+    /* Styles for the logo, you can customize as needed */
+  }
+  
+  .Webcam {
+    display: flex;
+    /* Styles for the webcam component, you can customize as needed */
+  }
+  
+  .mic {
+    display: flex;
+    /* Styles for the microphone, you can customize as needed */
+  }
+  
+  .persona {
+    display: flex;
+    flex-direction: column;
+    /* Styles for the persona component, you can customize as needed */
+  }
+  
+  .chat {
+    display: flex;
+    /* Styles for the chat component, you can customize as needed */
+  }
+  

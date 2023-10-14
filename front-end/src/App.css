@@ -1,19 +1,19 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: auto;
+  margin: 0;
+  /* padding: 2rem; */
+  /* text-align: center; */
 }
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  /* padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
   background: linear-gradient(to right, #ff6b6b, #646cff);
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
+  color: transparent; */
 }
 
 .logo:hover {
@@ -39,26 +39,26 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
+  .card {
+    padding: 2em;
+  }
 
-.read-the-docs {
-  color: #888;
-}
+  .read-the-docs {
+    color: #888;
+  }
 
 
 body {
   background: linear-gradient(45deg, #ff6b6b, #646cff);
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 250px;
+  width: 2000px;
   display: flex;
+  background-size: cover; 
+  background-position: center;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; 
 }
-
-/* Additional CSS to ensure the gradient background covers the whole viewport */
-
 
