@@ -1,0 +1,25 @@
+.character-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cc-title{
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.character-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 24px;
+    width: 20%;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}
