@@ -34,7 +34,21 @@ export function startVoiceCollection(){
 
 export function endVoiceCollection(){
     recognition.stop()
-    
+
+    fetch('http://localhost:5000/generate', {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: result}),
+    })
+      .then(response => {
+        response.json().then((res) => {
+            console.log(res)
+        });
+      });
+
 }
 
 
