@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
-import Graph from './graph'
 
 export default function Webcam(){
     const [scoreData, setScoreData] = useState([]);
