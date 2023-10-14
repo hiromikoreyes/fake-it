@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
+import Graph from './graph'
 
 export default function Webcam(){
-
+    const [scoreData, setScoreData] = useState([]);
+    const [evalsData, setEvalsData] = useState([]);
+    const [showGraph, setShowGraph] = useState(false);
     const [count, setCount] = useState(0)
     const videoRef = useRef()
     const canvasRef = useRef()
@@ -71,6 +74,8 @@ export default function Webcam(){
             if(num_eval % 30 == 0){
                 const score = curr_score / num_eval;
                 total_num_eval += num_eval
+                scoreData.push(score);
+                evalsData.push(total_num_eval);
                 console.log({"score": score, "evals": total_num_eval})
                 num_eval = 0
                 curr_score = 0
@@ -82,15 +87,28 @@ export default function Webcam(){
 
     }, 60)
     }
+    
+    const transferDataToGraph = () => {
+        // Assuming you have the arrays or can generate them
+        const newScoreData = [scoreData];
+        const newEvalsData = [evalsData];
+    
+        setScoreData(newScoreData);
+        setEvalsData(newEvalsData);
+        setShowGraph(true);
+      };
+
     return(
         <>
             <h1>Face Detection</h1>
             <div className="appvide">
             
             <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+            <button onClick={transferDataToGraph}>Show Graph</button>
             </div>
             <canvas ref={canvasRef} width="940" height="650"
             className="appcanvas"/>
+            {showGraph && <Graph scoreData={scoreData} evalsData={evalsData} />}
 
         </>
     )
