@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
 import { Link } from 'react-router-dom';
-import { Application } from '@splinetool/runtime';
+
 
 
 const Home = () => {
