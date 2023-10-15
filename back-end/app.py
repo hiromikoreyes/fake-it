@@ -14,3 +14,4 @@ def generate():
     data = request.get_json()
     result = generation.response(data["text"])
     return jsonify({'response': result})
+
