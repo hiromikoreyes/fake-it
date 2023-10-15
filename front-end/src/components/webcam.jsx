@@ -4,6 +4,7 @@ import { scoreEvaluation } from '../scripts/evaluate'
 import { startVoiceCollection, endVoiceCollection } from '../scripts/voicetext';
 
 let score = 0;
+const value = [];
 
 export default function Webcam(){
 
@@ -42,11 +43,12 @@ export default function Webcam(){
     var curr_score = 0;
     var num_eval = 0;
     var total_num_eval = 0
+    
 
 
     const faceMyDetect = ()=>{
     setInterval(async()=>{
-
+        let dictionary = {}
         //timing func
         const detections = await faceapi.detectAllFaces(videoRef.current,
         new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
@@ -66,6 +68,9 @@ export default function Webcam(){
                 num_eval = 0
                 curr_score = 0
             }
+            dictionary["score"]= curr_score;
+            dictionary["num_eval"]=num_eval;
+            value.push(dictionary);
 
         } catch(error) {
             // console.error("detection no existo" + " " + error)
