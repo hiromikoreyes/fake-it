@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
-import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
+import {startVoiceCollection, endVoiceCollection, setPersona, initPersonaPrompts} from '../scripts/voicetext'
 import styles from './webcam.css';
 
 let score = 0;
@@ -14,12 +14,18 @@ export default function Webcam(){
     }
 
 
-
     const [count, setCount] = useState(0)
     const videoRef = useRef()
     const canvasRef = useRef()
+    const url = window.location.href
+    const parts = url.split("/");
+    const lastPart = parts[parts.length - 1];
+    let graphinglist = []
+
 
     useEffect(()=>{
+        setPersona(lastPart)
+        initPersonaPrompts()
         window.updateChatResponse = updateChatResponse;
         startVideo()
         videoRef && loadModels()
