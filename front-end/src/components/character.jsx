@@ -1,42 +1,52 @@
 import React from "react"
 import './character.css'
 import '../index.css'
+import '../scripts/voicetext'
+import { initPersonaPrompts, setPersona } from "../scripts/voicetext"
+
 
 export default function Character(){
+
+    function chooseCharacterRex(){
+        setPersona("REX")
+        initPersonaPrompts()
+        location.href="/webcam"
+    }
+
     
     return(
-        <div className="character-card-container button">
-            <div className="character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
+        <div className="character-card-container flex justify-center">
+            <div onClick={chooseCharacterRex} className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
                 <div className="cc-title">
                     REX
                 </div>
                 <div className="cc-img-container m24">
                     <img src="https://img.freepik.com/premium-vector/cartoon-t-rex-was-standing-with-two-legs_9633-4.jpg?w=996"/>
                 </div>
-                <div className="cc-body m-10">
+                <div className="cc-body text-center m-10">
                     Rex is your best friend who feeds into all your wacky and crazy delusions. 
                 </div>
             </div>
-            <div className="character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
+            <div className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
                 <div className="cc-title">
-                    REX
+                    MOM
                 </div>
-                <div className="cc-img-container m24">
+                <div className="cc-img-container m24 text-center">
                     <img src="https://img.freepik.com/premium-vector/cartoon-t-rex-was-standing-with-two-legs_9633-4.jpg?w=996"/>
                 </div>
-                <div className="cc-body m-10">
-                    Rex is your best friend who feeds into all your wacky and crazy delusions. 
+                <div className="cc-body m-10 text-center">
+                    Your loving, caring, overendearing, warm, Mother.
                 </div>
             </div>
-            <div className="character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
-                <div className="cc-title">
-                    REX
+            <div className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
+                <div className="cc-title text-center">
+                    ALEX
                 </div>
                 <div className="cc-img-container m24">
                     <img src="https://img.freepik.com/premium-vector/cartoon-t-rex-was-standing-with-two-legs_9633-4.jpg?w=996"/>
                 </div>
                 <div className="cc-body m-10">
-                    Rex is your best friend who feeds into all your wacky and crazy delusions. 
+                    Your biggest fan.
                 </div>
             </div>
 

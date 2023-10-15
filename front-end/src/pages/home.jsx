@@ -4,7 +4,12 @@ import Character from '../components/character'
 function Home() {
   return (
     <>
-      <Character/>
+      <div className='w-full flex justify-center text-center'>
+        Title
+        <button>Start A Conversation</button>
+      </div>
+
+      {/* <Character/> */}
     </>
   )
 }
