@@ -12,5 +12,5 @@ def test():
 @app.route('/generate', methods=["POST"])
 def generate():
     data = request.get_json()
-    result = generation.response(data["text"], data["persona"], data["mood"])
+    result = generation.response(data["text"])
     return jsonify({'response': result})
