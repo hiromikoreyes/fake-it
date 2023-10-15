@@ -1,7 +1,5 @@
 import openai
-import matplotlib.pyplot as plt
-import io
-import base64
+openai.api_key = "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"
 
 openai.api_key = "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"
 

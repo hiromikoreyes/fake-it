@@ -10,6 +10,11 @@ let score = 0;
 const value = [];
 
 export default function Webcam(){
+    const [chatResponse, setChatResponse] = useState("");
+    const updateChatResponse = (response) => {
+        setChatResponse(response);
+    }
+
 
     const [count, setCount] = useState(0)
     const videoRef = useRef()
@@ -21,11 +26,13 @@ export default function Webcam(){
 
 
     useEffect(()=>{
-        setPersona(lastPart)
-        initPersonaPrompts()
+        window.updateChatResponse = updateChatResponse;
         startVideo()
         videoRef && loadModels()
-    },[])
+        return () => {
+            window.updateChatResponse = null;
+        };
+    }, []);
 
     const startVideo = ()=>{
     navigator.mediaDevices.getUserMedia({video:true})
@@ -87,40 +94,50 @@ export default function Webcam(){
 
     }, 60)
     }
-
-    function endConversation(){
-
-        fetch('http://localhost:5000/graph', {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({content: graphinglist})
-        }).then(result =>{
-            location.href = "/results/" + result["response"]
-        })
-    }
-
-    return(
-        <>
-        <div className={styles['home-container']}>
+    return (
+<>
+    <div className={styles['home-container']}>
         <h1 className="font-bold animated-text title"><strong>Fake:It</strong> ai chat</h1>
-            <div className="appvide">
-                <div id="number">0</div> 
-            </div>
-            <a className='w-6/12'></a>
-            <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
 
-            <button className={styles['explore-button']} onClick={endConversation}> 
-                End Conversation
-            </button>
+        <div className="appvide">
+            <div id="number">Mood score</div> 
         </div>
-        </>
-    )
-}
+
+        <div className="media-container">
+            <div className="video-container">
+                <video 
+                    crossOrigin="anonymous" 
+                    ref={videoRef} 
+                    autoPlay 
+                    className="myVideo"
+                ></video>
+            </div>
+            
+            <div className="image-container">
+                <img src="/robot.jpg" alt="A friendly robot" className="myImage"/>
+            </div>
+            
+            {/* Added Text Area Container Here */}
+        </div>
+        <div className="subtitles">{chatResponse}</div> {/* And here */}
+
+        <button 
+            className={styles['explore-button']} 
+            onClick={endConversation}
+            style={{ alignSelf: 'center', marginLeft: 0 }}
+        > 
+            End Conversation
+        </button>
+
+    </div>
+</>    )
+    }
 
 export function getCurrentMood(){
    return document.getElementById("number").textContent
 }
 
+export function endConversation(){
+    location.href = "/results"
+    
+}   

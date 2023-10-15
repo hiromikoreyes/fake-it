@@ -7,13 +7,19 @@
     padding: 2rem;
     gap: 6rem;
 }
-  
-.mb-4,
-.mb-8 {
-    display: inline-block;
+
+/* Merged margin-bottom property into h2 and .title */
+h2, .title {
+    font-size: 3rem !important; /* Adjusted from 2rem to 3rem for .title */
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
-    
-/* Add the animation */
+
+/* Removed the duplicate display: inline-block; from .mb-4, .mb-8 
+   since it didn't seem to provide specific styling without additional context */
+.mb-4, .mb-8 {}
+
+/* No changes in the animation */
 @keyframes Gradient {
     0% {
         background-position: 0% 50%;
@@ -25,16 +31,18 @@
         background-position: 0% 50%;
     }
 }
+
 h1 {
-    font-size: 2rem !important;  
+    font-size: 2rem !important; 
     font-weight: bold; 
 }
-  
+
 p.text-lg {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     margin-top: 5vh;
 }
 
+/* Simplified selectors and added hover, active, and focus styles in one block */
 .explore-button {
     background-color: #2563EB;
     color: white;
@@ -45,53 +53,36 @@ p.text-lg {
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: background-color 0.3s, transform 0.3s;
-    align-self: flex-start;
-    margin-left: 2rem;
-}
-
-.explore-button, 
-.explore-button:hover, 
-.explore-button:active, 
-.explore-button:focus {
-    color: white;  /* ensuring text color remains white */
-    text-decoration: none;  /* removing any underline */
 }
 
 .explore-button:hover {
-    background-color: #1E40AF; /* slightly darker shade for hover */
-    transform: scale(1.05); /* subtle grow effect on hover */
+    background-color: #1E40AF; 
+    transform: scale(1.05); 
 }
 
-.explore-button:active {
-    transform: scale(0.95); /* subtle shrink effect on click */
+.explore-button:active, .explore-button:focus {
+    transform: scale(0.95);
 }
 
-
-h2 {
-    font-size: 3rem;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 1rem;
-}
-  
 footer {
     margin-top: 1.25rem;
 }
 
-.how-it-works {
-    margin-top: 12vh !important;  /* Adjusted margin-top value */
+.how-it-works, .ai-engage {
+    margin-top: 80vh;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 1s, transform 1s;
     visibility: hidden;
 }
 
-.how-it-works.visible {
+.how-it-works.visible, .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
 }
 
+/* Merged similar properties in .fade-in */
 .fade-in {
     opacity: 0;
     transform: translateY(50px);
@@ -99,24 +90,9 @@ footer {
     visibility: hidden;
 }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-.ai-engage, .how-it-works {
-    margin-top: 80vh;
-}
-.title {
-    font-size: 2rem !important;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-
+/* Combined h1 > strong properties in one block and removed the !important flag. */
 h1 > strong {
-    font-size: 10rem !important;
+    font-size: 10rem;
     background: linear-gradient(-45deg, #0d0d0d, #000055);
     background-size: 200% 200%;
     -webkit-background-clip: text;
@@ -124,4 +100,41 @@ h1 > strong {
     animation: Gradient 5s ease infinite;
 }
 
-    
+.media-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw; /* setting to viewport width */
+    max-width: 90%; /* ensuring it doesn’t exceed any parent container */
+}
+
+.video-container, 
+.image-container {
+    width: 44vw; /* taking almost half of the viewport width */
+    height: 0;
+    padding-bottom: 44vw; /* this will make them almost square */
+    position: relative;
+}
+
+.myVideo, 
+.myImage {
+    position: absolute;
+    top: 0;
+    left: 3;
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+}
+
+.subtitles {
+    position: absolute;
+    bottom: 0;
+    left: 100;
+    right:0;
+    width: 35%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    text-align: left;
+}
