@@ -12,9 +12,7 @@ function App() {
   <>
     {<BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/result" component={<Result/>} />
-          <Route path="/choice" element={<Choice/>} />
+          <Route path="/home" element={<Home />} />
           <Route path="/webcam" element={<Conversation />} />
         </Routes>
       </BrowserRouter>}
