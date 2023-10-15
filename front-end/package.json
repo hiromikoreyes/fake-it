@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.481",
     "face-api.js": "^0.22.2",
     "node-fetch": "^2.1.2",
     "openai": "^4.12.1",

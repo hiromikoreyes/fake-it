@@ -16,11 +16,9 @@ export default function Webcam(){
 
     const [count, setCount] = useState(0)
     const videoRef = useRef()
-    const canvasRef = useRef()
     const url = window.location.href
     const parts = url.split("/");
     const lastPart = parts[parts.length - 1];
-    let graphinglist = []
 
 
     useEffect(()=>{
@@ -117,7 +115,7 @@ export default function Webcam(){
             </div>
             
             <div className="image-container">
-                <img src="/robot.jpg" alt="A friendly robot" className="myImage"/>
+                <img src="/rex.jpg" alt="A friendly robot" className="myImage"/>
             </div>
             
             {/* Added Text Area Container Here */}
@@ -127,7 +125,7 @@ export default function Webcam(){
         <button 
             className={styles['explore-button']} 
             onClick={endConversation}
-            style={{ alignSelf: 'center', marginLeft: 0 }}
+            style={{ transform: "translateX(890px)", padding: "30px"}}
         > 
             End Conversation
         </button>

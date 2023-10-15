@@ -92,7 +92,8 @@ footer {
 
 /* Combined h1 > strong properties in one block and removed the !important flag. */
 h1 > strong {
-    font-size: 10rem;
+    margin-left: 40%;
+    font-size: 3rem;
     background: linear-gradient(-45deg, #0d0d0d, #000055);
     background-size: 200% 200%;
     -webkit-background-clip: text;
@@ -104,8 +105,8 @@ h1 > strong {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 70vw; /* setting to viewport width */
     max-width: 90%; /* ensuring it doesn’t exceed any parent container */
+    transform: translateX(2rem);
 }
 
 .video-container, 
@@ -114,6 +115,13 @@ h1 > strong {
     height: 0;
     padding-bottom: 44vw; /* this will make them almost square */
     position: relative;
+}
+
+.image-container img{
+    object-fit: fill;
+    width: 210px;
+    height: 210px;
+    border-radius: 15%;
 }
 
 .myVideo, 
@@ -127,14 +135,12 @@ h1 > strong {
 }
 
 .subtitles {
-    position: absolute;
-    bottom: 0;
-    left: 100;
-    right:0;
     width: 35%;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 1.5rem;
     font-size: 1.5rem;
     text-align: left;
+    margin-left: auto; 
+    margin-right: 1rem;
 }
