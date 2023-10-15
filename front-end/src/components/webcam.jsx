@@ -62,7 +62,7 @@ export default function Webcam(){
                 score = curr_score / num_eval;
                 document.getElementById("number").textContent=score
                 total_num_eval += num_eval
-                // console.log({"score": score, "evals": total_num_eval})
+                console.log({"score": score, "evals": total_num_eval})
                 num_eval = 0
                 curr_score = 0
             }
@@ -75,17 +75,19 @@ export default function Webcam(){
     }
     return(
         <>
-            <h1>Face Detection</h1>
-            <div className="appvide">
-                <div id="number" style={{visibility: 'hidden'}}>0</div>
-                <button onClick={startVoiceCollection}>TEST BUTTON</button>
-                <button onClick={endVoiceCollection}>STOP</button>
+            <div style={{width: "1000px"}}>
+                <h1>FakeIt</h1>
+                <div className="appvide">
+                    <div id="number" style={{visibility: 'hidden'}}>0</div>
+                </div>
+                <a className='w-6/12'></a>
+                <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+                <button>End Conversation</button>
             </div>
-            <video style={{width: "500px"}} crossOrigin="anonymous" ref={videoRef} autoPlay></video>
         </>
     )
 }
 
 export function getCurrentMood(){
-    return document.getElementById("number").textContent=score
+    console.log(document.getElementById("number").textContent=score)
 }
