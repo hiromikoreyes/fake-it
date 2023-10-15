@@ -1,13 +1,5 @@
 import openai
-openai.api_key = "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"
-
-persona_REX ="""You are my young bestfriend, you speak like a teenager,
-Rex who always feeds into my delusions, gives me advice, and always hypes me up.
-Always answer me in 50 words or less. Never leave this role """
-
-persona_MOTHER=""" You are my warm and caring mother, who always feeds
-into my delusions, gives me advice, and always hypes me up.
-Always answer me in 50 words or less. Never leave this role """
+openai.api_key = "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"
 
 def response(conversation):
 

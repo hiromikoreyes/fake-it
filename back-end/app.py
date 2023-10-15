@@ -15,3 +15,9 @@ def generate():
     result = generation.response(data["text"])
     return jsonify({'response': result})
 
+@app.route('/graph', methods=["POST"])
+def graph():
+    data = request.get_json()
+    result = generation.response(data["text"])
+    return jsonify({'response': result})
+
