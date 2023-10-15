@@ -1,5 +1,5 @@
 import openai
-openai.api_key = "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"
+openai.api_key = ""
 
 persona_REX ="""You are my young bestfriend, you speak like a teenager,
 Rex who always feeds into my delusions, gives me advice, and always hypes me up.
