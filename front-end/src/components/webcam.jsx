@@ -2,12 +2,14 @@ import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
 import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
-import styles from './webcam.css';
+
+
+
 
 let score = 0;
 const value = [];
 
-export default function Webcam(persona){
+export default function Webcam(){
 
 
     const [count, setCount] = useState(0)
@@ -84,18 +86,16 @@ export default function Webcam(persona){
     }
     return(
         <>
-        <div className={styles['home-container']}>
-        <h1 className="font-bold animated-text title"><strong>Fake:It</strong> ai chat</h1>
-            <div className="appvide">
-                <div id="number">0</div> 
-            </div>
-            <a className='w-6/12'></a>
-            <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+            <div style={{width: "1000px"}}>
+                <h1>FakeIt</h1>
+                <div className="appvide">
+                    <div id="number">0</div> 
+                </div>
+                <a className='w-6/12'></a>
+                <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
 
-            <button className={styles['explore-button']} onClick={endConversation}> 
-                End Conversation
-            </button>
-        </div>
+                <button onClick={endConversation}> End Conversation</button>
+            </div>
         </>
     )
 }
