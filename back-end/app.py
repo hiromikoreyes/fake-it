@@ -18,6 +18,13 @@ def generate():
 @app.route('/graph', methods=["POST"])
 def graph():
     data = request.get_json()
-    result = generation.response(data["text"])
-    return jsonify({'response': result})
+
+    x_axis = []
+    y_axis = []
+
+    for i in range(len(data["content"])):
+        x_axis.append(data["content"][i]["evals"])
+        y_axis.append(data["content"][i]["score"])
+
+    return jsonify({'response': generation.create_graph(x_axis, y_axis)})
 

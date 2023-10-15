@@ -17,7 +17,7 @@ export default function Webcam(){
     const url = window.location.href
     const parts = url.split("/");
     const lastPart = parts[parts.length - 1];
-    let graphinglist = [{}]
+    let graphinglist = []
 
 
     useEffect(()=>{
@@ -74,10 +74,10 @@ export default function Webcam(){
                 score = curr_score / num_eval;
                 document.getElementById("number").textContent=score
                 total_num_eval += num_eval
+                graphinglist.push({"evals": total_num_eval, "score": score})
                 num_eval = 0
                 curr_score = 0
-                graphinglist.push({"evals": evals, "score": score})
-                console.log(graphinglist)
+
             }
 
 
@@ -89,17 +89,17 @@ export default function Webcam(){
     }
 
     function endConversation(){
-        console.log(graphinglist)
 
-        // fetch('http://localhost:5000/generate', {
-        //     method: "POST",
-        //     mode: "cors",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({text: dictionary})
-        // })
-        location.href = "/results"
+        fetch('http://localhost:5000/graph', {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({content: graphinglist})
+        }).then(result =>{
+            location.href = "/results/" + result["response"]
+        })
     }
 
     return(
