@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
 import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
+import { initPersonaPrompts, setPersona } from "../scripts/voicetext"
+
 
 
 
@@ -9,7 +11,7 @@ import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
 let score = 0;
 const value = [];
 
-export default function Webcam(){
+export default function Webcam(persona){
 
 
     const [count, setCount] = useState(0)
@@ -18,6 +20,8 @@ export default function Webcam(){
 
     useEffect(()=>{
         startVideo()
+        setPersona(persona)
+        initPersonaPrompts()
         videoRef && loadModels()
     },[])
 

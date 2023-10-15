@@ -16,6 +16,7 @@ export function initPersonaPrompts(){
     } else if(
         curr_persona == "MOM"
     ){
+        console.log("REX")
         conversation = [{"role": "system", "content": ""}]
     }else if(
         curr_persona == "ALEX"
@@ -53,7 +54,8 @@ export function startVoiceCollection(){
 export function endVoiceCollection(){
 
     const curr_mood = getCurrentMood()
-    conversation.push({"role": "user", "content": + ". The user says:" + result + "moodscore: " + curr_mood.toString() })
+    conversation.push({"role": "user", "content": "The user says:" + result + "(moodscore: " + curr_mood.toString() +")" })
+    console.log(conversation)
 
     fetch('http://localhost:5000/generate', {
         method: "POST",
