@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/choice" element={<Choice />} />
+          <Route path="/results" element={<Result />} />
           <Route path="/webcam/:var" element={<Conversation />} />
         </Routes>
       </BrowserRouter>}
