@@ -3,24 +3,25 @@ import { getCurrentMood } from "../components/webcam"
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 var result = "";
 
-var conversation = []
+export var conversation = []
 var curr_persona = '';
 
 export function setPersona(persona){
+    console.log(persona)
     curr_persona = persona
 }
 
 export function initPersonaPrompts(){
-    if(curr_persona == "REX"){
+    if(curr_persona == "rex"){
         conversation = [{"role": "system", "content": "You are my delusional bestfriend Rex, you speak like a young person who always feeds into my delusions, gives me advice, and always hypes me up. You are also sensitive to my mood score which quantifies my negative/positive energy levels, (0 is very negative, 50 is neutral, 100 is positive). Don't really mention my score, but be aware of it. Always answer me in 50 words or less. Never leave this role. Stick to the character well."}]
     } else if(
-        curr_persona == "MOM"
+        curr_persona == "alex"
     ){
-        conversation = [{"role": "system", "content": ""}]
+        conversation = [{"role": "system", "content": "You are supposed to be the Biggest Fan of the prompt speaker and try to boost their confidence using praise and/or adoration. You are also sensitive to my mood score which quantifies my negative/positive energy levels, (0 is very negative, 50 is neutral, 100 is positive). Don't really mention my score, but be aware of it. Always answer me in 50 words or less. Never leave this role. Stick to the character well."}]
     }else if(
-        curr_persona == "ALEX"
+        curr_persona == "mom"
     ){
-        conversation = [{"role": "system", "content": ""}]
+        conversation = [{"role": "system", "content": "You are supposed to be the caring older mom of the prompt speaker and try to comfort them using specific wisdom and encouragement. You are also sensitive to my mood score which quantifies my negative/positive energy levels, (0 is very negative, 50 is neutral, 100 is positive). Don't really mention my score, but be aware of it. Always answer me in 50 words or less. Never leave this role. Stick to the character well."}]
     }
 }
 
@@ -53,7 +54,8 @@ export function startVoiceCollection(){
 export function endVoiceCollection(){
 
     const curr_mood = getCurrentMood()
-    conversation.push({"role": "user", "content": + ". The user says:" + result + "moodscore: " + curr_mood.toString() })
+    conversation.push({"role": "user", "content": + ". The user says: " + result.trim() + " (moodscore: " + curr_mood.toString() + ")" })
+    console.log(conversation)
 
     fetch('http://localhost:5000/generate', {
         method: "POST",

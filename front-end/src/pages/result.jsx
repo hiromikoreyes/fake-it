@@ -5,7 +5,9 @@ export default function Result(){
     endConversation();
 
     return(
-        <div></div>
+        <div>
+            
+        </div>
     )
 
 }

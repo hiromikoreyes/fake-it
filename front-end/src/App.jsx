@@ -10,13 +10,13 @@ function App() {
   return (
 
   <>
-    {<BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/choice" element={<Choice />} />
-          <Route path="/webcam" element={<Conversation />} />
+          <Route path="/webcam/:var" element={<Conversation />} />
         </Routes>
-      </BrowserRouter>}
+      </BrowserRouter>
   </>
 
 

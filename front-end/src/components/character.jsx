@@ -2,18 +2,21 @@ import React from "react"
 import './character.css'
 import '../index.css'
 import '../scripts/voicetext'
-import { initPersonaPrompts, setPersona } from "../scripts/voicetext"
 
 
 export default function Character(){
 
     function chooseCharacterRex(){
-        setPersona("REX")
-        initPersonaPrompts()
-        location.href="/webcam"
+        location.href="/webcam/rex"
+    }
+    function chooseCharacterAlex(){
+        location.href="/webcam/alex"
+    }
+    function chooseCharacterMom(){
+        location.href="/webcam/mom"
     }
 
-    
+
     return(
         <div className="character-card-container flex justify-center">
             <div onClick={chooseCharacterRex} className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
@@ -27,7 +30,8 @@ export default function Character(){
                     Rex is your best friend who feeds into all your wacky and crazy delusions. 
                 </div>
             </div>
-            <div className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
+
+            <div onClick={chooseCharacterMom} className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
                 <div className="cc-title">
                     MOM
                 </div>
@@ -38,7 +42,8 @@ export default function Character(){
                     Your loving, caring, overendearing, warm, mother.
                 </div>
             </div>
-            <div className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
+
+            <div onClick={chooseCharacterAlex} className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">
                 <div className="cc-title text-center">
                     ALEX
                 </div>

@@ -1,20 +1,26 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect} from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
-import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
+import {startVoiceCollection, endVoiceCollection, setPersona, initPersonaPrompts} from '../scripts/voicetext'
+import { useParams } from 'react-router-dom';
 import styles from './webcam.css';
+
 
 let score = 0;
 const value = [];
 
 export default function Webcam(){
 
-
     const [count, setCount] = useState(0)
     const videoRef = useRef()
     const canvasRef = useRef()
+    const url = window.location.href
+    const parts = url.split("/");
+    const lastPart = parts[parts.length - 1];
 
     useEffect(()=>{
+        setPersona(lastPart)
+        initPersonaPrompts()
         startVideo()
         videoRef && loadModels()
     },[])
@@ -105,6 +111,6 @@ export function getCurrentMood(){
 }
 
 export function endConversation(){
+
     location.href = "/results"
-    
 }
