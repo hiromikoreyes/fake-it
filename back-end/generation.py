@@ -1,5 +1,5 @@
 import openai
-openai.api_key = "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"
+openai.api_key = ""
 
 def response(conversation):
 
