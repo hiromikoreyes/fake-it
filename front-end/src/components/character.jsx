@@ -7,6 +7,9 @@ import { initPersonaPrompts, setPersona } from "../scripts/voicetext"
 
 export default function Character(){
 
+    function chooseCharacterRex(){
+        location.href="webcam/rex"
+    }
 
     
     return(

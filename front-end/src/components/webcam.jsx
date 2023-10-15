@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
 import {startVoiceCollection, endVoiceCollection} from '../scripts/voicetext'
-import styles from './webcam.css';
 
 let score = 0;
 const value = [];
