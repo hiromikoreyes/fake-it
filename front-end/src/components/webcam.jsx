@@ -2,8 +2,13 @@ import { useState, useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
 import { startVoiceCollection, endVoiceCollection } from '../scripts/voicetext';
+import Result from '../pages/result';
+// import creategraph from '../../../back-end/'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 
 let score = 0;
+const value = [];
 
 export default function Webcam(){
 
@@ -47,6 +52,7 @@ export default function Webcam(){
     const faceMyDetect = ()=>{
     setInterval(async()=>{
 
+        let dictionary = {}
         //timing func
         const detections = await faceapi.detectAllFaces(videoRef.current,
         new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
@@ -66,6 +72,10 @@ export default function Webcam(){
                 num_eval = 0
                 curr_score = 0
             }
+            dictionary["score"]= curr_score;
+            dictionary["num_eval"]=num_eval;
+            value.push(dictionary);
+
 
         } catch(error) {
             // console.error("detection no existo" + " " + error)
@@ -78,11 +88,17 @@ export default function Webcam(){
             <div style={{width: "1000px"}}>
                 <h1>FakeIt</h1>
                 <div className="appvide">
-                    <div id="number" style={{visibility: 'hidden'}}>0</div>
+                    <div id="number" style={{visibility: 'hidden'}}>0</div> 
                 </div>
                 <a className='w-6/12'></a>
                 <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
-                <button>End Conversation</button>
+                <Router>
+                    <Switch>
+                        <Route path="/result" component={Result} />
+                    </Switch>
+                </Router>
+
+                {/* <button onClick={Result} > End Conversation</button> */}
             </div>
         </>
     )
@@ -90,4 +106,8 @@ export default function Webcam(){
 
 export function getCurrentMood(){
     console.log(document.getElementById("number").textContent=score)
+}
+
+export function endConversation(){
+    // creategraph(value);
 }
