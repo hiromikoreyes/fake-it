@@ -13,6 +13,7 @@ function App() {
     {<BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/choice" element={<Choice />} />
           <Route path="/webcam" element={<Conversation />} />
         </Routes>
       </BrowserRouter>}
