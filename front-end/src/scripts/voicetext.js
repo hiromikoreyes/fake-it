@@ -32,6 +32,7 @@ recognition.continuous = false;
 recognition.onresult = (event) => {
     const transcript = event.results[event.results.length - 1][0].transcript;
     result = transcript;
+
     // console.log(transcript);
 };
 

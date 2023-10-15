@@ -9,6 +9,7 @@ import styles from './webcam.css';
 let score = 0;
 const value = [];
 
+
 export default function Webcam(){
     const [chatResponse, setChatResponse] = useState("");
     const updateChatResponse = (response) => {
@@ -84,7 +85,6 @@ export default function Webcam(){
                 graphinglist.push({"evals": total_num_eval, "score": score})
                 num_eval = 0
                 curr_score = 0
-
             }
 
 
@@ -94,6 +94,22 @@ export default function Webcam(){
 
     }, 60)
     }
+
+    function endConversation(){
+
+        fetch('http://localhost:5000/graph', {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({"content": graphinglist}),
+        }).then(res =>{
+            location.href = "/results"
+        })
+    
+    }   
+
     return (
 <>
     <div className={styles['home-container']}>
@@ -137,7 +153,3 @@ export function getCurrentMood(){
    return document.getElementById("number").textContent
 }
 
-export function endConversation(){
-    location.href = "/results"
-    
-}   
