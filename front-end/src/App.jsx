@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
-import {startVoiceCollection, endVoiceCollection} from './scripts/voicetext'
 import Conversation from './pages/conversation';
 import Home from "./pages/home";
 import Choice from "./pages/choice";
+import Result from "./pages/result";
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
     {<BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/result" component={<Result/>} />
           <Route path="/choice" element={<Choice/>} />
           <Route path="/webcam" element={<Conversation />} />
         </Routes>

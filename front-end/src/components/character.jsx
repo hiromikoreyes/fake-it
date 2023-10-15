@@ -35,7 +35,7 @@ export default function Character(){
                     <img src="https://img.freepik.com/premium-vector/cartoon-t-rex-was-standing-with-two-legs_9633-4.jpg?w=996"/>
                 </div>
                 <div className="cc-body m-10 text-center">
-                    Your loving, caring, overendearing, warm, Mother.
+                    Your loving, caring, overendearing, warm, mother.
                 </div>
             </div>
             <div className="w-80 character-card border-2 border-gray-700 hover:scale-110 transition-all rounded-lg">

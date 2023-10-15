@@ -3,8 +3,6 @@ import { getCurrentMood } from "../components/webcam"
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 var result = "";
 
-
-
 var conversation = []
 var curr_persona = '';
 
@@ -27,7 +25,7 @@ export function initPersonaPrompts(){
 }
 
 recognition.interimResults = true;
-recognition.continuous = true;
+recognition.continuous = false;
 
 
 recognition.onresult = (event) => {
@@ -37,12 +35,12 @@ recognition.onresult = (event) => {
 };
 
 
-
 recognition.onend = () => {
     const bold = "font-weight: bold";
     const normal = "font-weight: normal"
     console.log("%c"+result+"%c", bold, normal)
     console.log("recognition ending")
+    endVoiceCollection()
 };
 
 
@@ -54,7 +52,6 @@ export function startVoiceCollection(){
 
 export function endVoiceCollection(){
 
-    recognition.stop()
     const curr_mood = getCurrentMood()
     conversation.push({"role": "user", "content": + ". The user says:" + result + "moodscore: " + curr_mood.toString() })
 
