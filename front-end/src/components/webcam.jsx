@@ -2,7 +2,6 @@ import { useState, useRef, useEffect} from 'react'
 import * as faceapi from 'face-api.js'
 import { scoreEvaluation } from '../scripts/evaluate'
 import {startVoiceCollection, endVoiceCollection, setPersona, initPersonaPrompts} from '../scripts/voicetext'
-import { useParams } from 'react-router-dom';
 import styles from './webcam.css';
 
 
@@ -27,6 +26,8 @@ export default function Webcam(){
 
 
     useEffect(()=>{
+        setPersona(lastPart)
+        initPersonaPrompts()
         window.updateChatResponse = updateChatResponse;
         startVideo()
         videoRef && loadModels()
@@ -82,9 +83,9 @@ export default function Webcam(){
                 score = curr_score / num_eval;
                 document.getElementById("number").textContent=score
                 total_num_eval += num_eval
-                graphinglist.push({"evals": total_num_eval, "score": score})
                 num_eval = 0
                 curr_score = 0
+                graphinglist.push({"evals": total_num_eval, "score": score})
             }
 
 
@@ -96,6 +97,8 @@ export default function Webcam(){
     }
 
     function endConversation(){
+
+        console.log(graphinglist)
 
         fetch('http://localhost:5000/graph', {
             method: "POST",
@@ -116,7 +119,7 @@ export default function Webcam(){
         <h1 className="font-bold animated-text title"><strong>Fake:It</strong> ai chat</h1>
 
         <div className="appvide">
-            <div id="number">Mood score</div> 
+            <div id="number">0</div> 
         </div>
 
         <div className="media-container">
