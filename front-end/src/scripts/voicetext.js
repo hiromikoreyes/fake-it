@@ -67,6 +67,7 @@ export function endVoiceCollection(){
         response.json().then((res) => {
             console.log(res)
             conversation.push({role: "assistant", "content": res["response"]})
+            window.updateChatResponse && window.updateChatResponse(res["response"]);
             speak(res["response"]).then(res => {
                 setInterval(startVoiceCollection(), 2000);
             });
@@ -82,7 +83,4 @@ export function endVoiceCollection(){
         });
       }
 }
-
-
-
 
