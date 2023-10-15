@@ -78,6 +78,7 @@ export function endVoiceCollection(){
         return new Promise((resolve, reject) => {
           var synth = window.speechSynthesis;
           var utterThis = new SpeechSynthesisUtterance(message);
+          utterThis.rate = 1.5;
           synth.speak(utterThis);
           utterThis.onend = resolve;
         });

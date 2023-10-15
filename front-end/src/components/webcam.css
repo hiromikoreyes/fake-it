@@ -136,6 +136,7 @@ h1 > strong {
 
 .subtitles {
     width: 35%;
+    transform: translateY(-42rem);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 1.5rem;

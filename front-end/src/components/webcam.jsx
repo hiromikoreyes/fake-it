@@ -98,10 +98,17 @@ export default function Webcam(){
     return (
 <>
     <div className={styles['home-container']}>
+    <button 
+            className={styles['explore-button']} 
+            onClick={endConversation}
+            style={{transform: "translateY(3rem)", marginLeft: "1rem"}}
+        > 
+            End Conversation
+        </button>
         <h1 className="font-bold animated-text title"><strong>Fake:It</strong> ai chat</h1>
 
         <div className="appvide">
-            <div id="number">Mood score</div> 
+            <div id="number" className='ml-12 text-white'>mood score</div> 
         </div>
 
         <div className="media-container">
@@ -122,13 +129,7 @@ export default function Webcam(){
         </div>
         <div className="subtitles">{chatResponse}</div> {/* And here */}
 
-        <button 
-            className={styles['explore-button']} 
-            onClick={endConversation}
-            style={{ transform: "translateX(890px)", padding: "30px"}}
-        > 
-            End Conversation
-        </button>
+
 
     </div>
 </>    )
