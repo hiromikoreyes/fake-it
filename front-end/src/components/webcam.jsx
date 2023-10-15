@@ -62,7 +62,7 @@ export default function Webcam(){
                 score = curr_score / num_eval;
                 document.getElementById("number").textContent=score
                 total_num_eval += num_eval
-                console.log({"score": score, "evals": total_num_eval})
+                // console.log({"score": score, "evals": total_num_eval})
                 num_eval = 0
                 curr_score = 0
             }
