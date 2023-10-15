@@ -54,7 +54,7 @@ export function startVoiceCollection(){
 export function endVoiceCollection(){
 
     const curr_mood = getCurrentMood()
-    conversation.push({"role": "user", "content": + ". The user says: " + result.trim() + " (moodscore: " + curr_mood.toString() + ")" })
+    conversation.push({"role": "user", "content": + ". The user says: " + result.slice(3, result.length) + " (moodscore: " + curr_mood.toString() + ")" })
     console.log(conversation)
 
     fetch('http://localhost:5000/generate', {

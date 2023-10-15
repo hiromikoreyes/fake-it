@@ -17,6 +17,8 @@ export default function Webcam(){
     const url = window.location.href
     const parts = url.split("/");
     const lastPart = parts[parts.length - 1];
+    let graphinglist = [{}]
+
 
     useEffect(()=>{
         setPersona(lastPart)
@@ -57,7 +59,6 @@ export default function Webcam(){
     const faceMyDetect = ()=>{
     setInterval(async()=>{
 
-        let dictionary = {}
         //timing func
         const detections = await faceapi.detectAllFaces(videoRef.current,
         new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
@@ -73,13 +74,11 @@ export default function Webcam(){
                 score = curr_score / num_eval;
                 document.getElementById("number").textContent=score
                 total_num_eval += num_eval
-                console.log({"score": score, "evals": total_num_eval})
                 num_eval = 0
                 curr_score = 0
+                graphinglist.push({"evals": evals, "score": score})
+                console.log(graphinglist)
             }
-            dictionary["score"]= curr_score;
-            dictionary["num_eval"]=num_eval;
-            value.push(dictionary);
 
 
         } catch(error) {
@@ -88,6 +87,21 @@ export default function Webcam(){
 
     }, 60)
     }
+
+    function endConversation(){
+        console.log(graphinglist)
+
+        // fetch('http://localhost:5000/generate', {
+        //     method: "POST",
+        //     mode: "cors",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({text: dictionary})
+        // })
+        location.href = "/results"
+    }
+
     return(
         <>
         <div className={styles['home-container']}>
@@ -110,7 +124,3 @@ export function getCurrentMood(){
    return document.getElementById("number").textContent
 }
 
-export function endConversation(){
-
-    location.href = "/results"
-}
